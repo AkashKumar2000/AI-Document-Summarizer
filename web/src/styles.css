@@ -1,0 +1,127 @@
+:root {
+    --bg: #0b1020;
+    --card: #121933;
+    --ink: #e9ecf8;
+    --muted: #aab3d1;
+    --accent: #6ea8fe;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+    background: var(--bg);
+    color: var(--ink);
+}
+
+.container {
+    max-width: 980px;
+    margin: 40px auto;
+    padding: 0 16px;
+}
+
+.card {
+    background: linear-gradient(180deg, #121933, #0f1530);
+    border: 1px solid #1e2a57;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+label {
+    font-size: 12px;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+}
+
+input[type='text'],
+textarea,
+select {
+    width: 100%;
+    background: #0c1230;
+    color: var(--ink);
+    border: 1px solid #23306b;
+    border-radius: 10px;
+    padding: 10px 12px;
+    outline: none;
+}
+
+textarea {
+    min-height: 160px;
+}
+
+button {
+    background: var(--accent);
+    color: #071226;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New";
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #16224a;
+    border: 1px solid #22306a;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #1b2550;
+    margin: 20px 0;
+}
+
+.small {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.copy {
+    background: #1a234a;
+    color: var(--ink);
+    border: 1px solid #2a3b7c;
+}
+
+.slider {
+    width: 100%;
+}
+
+.dropzone {
+    border: 2px dashed #2b3a7a;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.summary {
+    white-space: pre-wrap;
+}

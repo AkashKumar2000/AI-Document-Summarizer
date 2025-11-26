@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+*.db
+
+# FastAPI
+*.sqlite3
+
+# React / Vite frontend
+web/node_modules/
+web/dist/
+
+# Build folders
+dist/
+build/
+
+# HuggingFace / Transformers cache
+*.bin
+*.pt
+cache/
+.model_cache/
+transformers_cache/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Backup files
+*.zip
+*.tar
+*.7z
+*.rar
+
+# PDF and test files (optional)
+*.pdf
+*.docx
+*.txt
