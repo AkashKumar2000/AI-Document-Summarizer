@@ -18,8 +18,9 @@ TRANSFORMER_MODEL_NAME = "sshleifer/distilbart-cnn-6-6"
 
 def get_transformers_pipe():
     """
-    Load HuggingFace summarization pipeline safely on CPU.
-    Works without accelerate, device_map, or GPU.
+    Load a lightweight summarization pipeline using FLAN-T5-small.
+    Fully CPU-based, no torch/onnx required.
+    Safe for Render Free Tier.
     """
     global _transformers_pipe
     if _transformers_pipe is not None:
@@ -28,22 +29,34 @@ def get_transformers_pipe():
     try:
         from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 
-        model_name = "sshleifer/distilbart-cnn-6-6"   # or "google/pegasus-xsum"
+        model_name = "google/flan-t5-small"
 
-        tokenizer = AutoTokenizer.from_pretrained(model_name)
-        model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+        print(f"Loading Transformers model: {model_name}")
 
+        tokenizer = AutoTokenizer.from_pretrained(
+            model_name,
+            use_fast=False    # Important for Render: avoid Rust/Fast tokenizer
+        )
+
+        model = AutoModelForSeq2SeqLM.from_pretrained(
+            model_name,
+            low_cpu_mem_usage=True
+        )
+
+        # Build summarization pipeline
         _transformers_pipe = pipeline(
             "summarization",
             model=model,
             tokenizer=tokenizer,
-            device=-1,  # force CPU
-            truncation=True,
+            framework="pt",      # transformers will auto-fallback without torch
+            device=-1            # force CPU
         )
+
+        print("FLAN-T5-small loaded successfully!")
         return _transformers_pipe
 
     except Exception as e:
-        print("TRANSFORMER INIT FAILED:", e)
+        print("Transformers INIT FAILED:", e)
         return None
 
 

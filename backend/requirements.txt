@@ -6,5 +6,4 @@ nltk==3.8.1
 
 transformers==4.37.2
 tokenizers==0.13.3
-
-onnxruntime==1.17.0
+sentencepiece==0.1.99
